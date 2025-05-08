@@ -129,11 +129,12 @@ data-guardian-cli sales_records -t csv -o sales_quality.pdf --name "Sales Record
 ## 🤝 Contributing:
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request after you've first forked the repo and created a branch from main.
-1-Fork the Project (Click the "Fork" button on the GitHub repository page: https://github.com/SAAD2003D/data-guardian) 
-2-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-3-Commit your Changes (git commit -m 'Add some AmazingFeature')
-4-Push to the Branch (git push origin feature/AmazingFeature)
-5-Open a Pull Request
+
+* 1-Fork the Project (Click the "Fork" button on the GitHub repository page: https://github.com/SAAD2003D/data-guardian) 
+* 2-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+* 3-Commit your Changes (git commit -m 'Add some AmazingFeature')
+* 4-Push to the Branch (git push origin feature/AmazingFeature)
+* 5-Open a Pull Request
 
 
 ## 📧 Contact
