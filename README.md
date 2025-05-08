@@ -1,7 +1,7 @@
 # Data Guardian 🛡️
 
-[![testPyPI version](https://badge.fury.io/py/data-guardian.svg)](https://badge.fury.io/py/data-guardian)
-[![testPyPI - Python Version](https://img.shields.io/pypi/pyversions/data-guardian)](https://pypi.org/project/data-guardian/)
+[![PyPI version](https://badge.fury.io/py/data-guardian.svg)](https://badge.fury.io/py/data-guardian)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/data-guardian)](https://pypi.org/project/data-guardian/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Update with your actual license -->
 <!-- Add other badges if you have them (e.g., build status, test coverage) -->
 <!-- [![Build Status](https://travis-ci.org/YOUR_USERNAME/data-guardian.svg?branch=main)](https://travis-ci.org/YOUR_USERNAME/data-guardian) -->
@@ -24,7 +24,7 @@ Whether you're a data scientist, analyst, researcher, or civic tech worker, Data
     *   Mixed Data Types within object columns
     *   Numerical Outliers (using IQR or Z-score methods)
     *   Categorical Outliers (rare categories)
-*   **Intuitive Quality Scoring:** Generates scores for:
+*   **Intuitive Quality Scoring:** Generates scores 0/100 for:
     *   Completeness
     *   Uniqueness
     *   Consistency
@@ -113,3 +113,30 @@ else:
 ```bash
 data-guardian-cli path/to/your/dataset.csv -o quality_report.pdf
 ``` 
+## CLI examples:
+
+```bash
+# Analyze a CSV and generate a PDF report (default output name)
+data-guardian-cli my_data.csv
+
+# Analyze an Excel file and generate an HTML report with a custom name
+data-guardian-cli financial_data.xlsx -o financial_audit.html --name "Financial Audit Q1"
+
+# Analyze a CSV, specifying its type, and output to a custom PDF name
+data-guardian-cli sales_records -t csv -o sales_quality.pdf --name "Sales Records"
+``` 
+
+## 🤝 Contributing:
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request after you've first forked the repo and created a branch from main.
+1-Fork the Project (Click the "Fork" button on the GitHub repository page: https://github.com/SAAD2003D/data-guardian) 
+2-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3-Commit your Changes (git commit -m 'Add some AmazingFeature')
+4-Push to the Branch (git push origin feature/AmazingFeature)
+5-Open a Pull Request
+
+
+## 📧 Contact
+saad fikri  – fsaad1929@gmail.com  
+
+
