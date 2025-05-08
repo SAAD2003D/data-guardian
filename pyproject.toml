@@ -1,0 +1,58 @@
+# pyproject.toml
+[build-system]
+requires = ["setuptools>=61.0", "wheel"] # Specify build tool dependencies
+build-backend = "setuptools.build_meta"
+# backend-path = ["."] # Tells setuptools to look for setup.cfg/setup.py in the current dir
+
+[project]
+name = "data-guardian"  # Name on PyPI (must be unique)
+version = "0.1.0"       # Start with a pre-release version
+authors = [
+    { name="Saad Fikri", email="fsaad1929@gmail.com" },
+]
+description = "A Python library for comprehensive data quality analysis and reporting on tabular datasets."
+readme = "README.md"
+requires-python = ">=3.10.9" 
+license = { file="LICENSE" } # Or { text = "MIT" } if you put type directly
+keywords = ["data quality", "data analysis", "pandas", "data cleaning", "data profiling", "ETL"]
+classifiers = [
+    "Development Status :: 3 - Alpha", # Or 4 - Beta, 5 - Production/Stable
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License", 
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pandas>=1.3",       
+    "numpy>=1.20",
+    "openpyxl>=3.0",     # For Excel
+    "Jinja2>=3.0",       # For HTML templating
+    "xhtml2pdf>=0.2.5",  # For PDF generation
+]
+
+[project.urls]
+Homepage = "https://github.com/SAAD2003D/data-guardian" # Link to your repo
+Bug-Tracker = "https://github.com/yourusername/data-guardian/issues"
+# Documentation = "https://your-docs-url.com" # Add later
+
+[project.scripts]
+# This creates a command-line script when your package is installed
+data-guardian-cli = "data_guardian.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]  # Look for packages in the current directory
+include = ["data_guardian*"]  # Include your main package and its submodules
+exclude = ["tests*", "examples*", "docs*"] # Exclude test, example, docs folders
+
+[tool.setuptools.package-data]
+# Include non-Python files like templates within your package
+data_guardian = ["reporting/templates/*.html"]

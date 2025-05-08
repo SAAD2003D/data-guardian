@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Quality Report: {{ profile.name }}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .section h2 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+            font-weight: bold;
+        }
+        .issue-type {
+            margin-top: 20px;
+        }
+        .issue-type h3 {
+            font-size: 1.2em;
+            color: #c0392b; /* Reddish for issues */
+            border-bottom: 1px dashed #c0392b;
+        }
+        .issue-details {
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
+        .issue-details p {
+            margin: 5px 0;
+        }
+        .severity-High { color: #e74c3c; font-weight: bold; }
+        .severity-Medium { color: #f39c12; font-weight: bold; }
+        .severity-Low { color: #2ecc71; }
+
+        .scores-table td:first-child {
+            font-weight: bold;
+            width: 30%;
+        }
+        .scores-table .overall-score td {
+            font-size: 1.1em;
+            font-weight: bold;
+            background-color: #e8f4fd;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+            color: #777;
+        }
+        .no-issues {
+            color: #27ae60;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Quality Audit Report</h1>
+
+        <div class="section">
+            <h2>Dataset Overview</h2>
+            <p><strong>Dataset Name:</strong> {{ profile.name }}</p>
+            <p><strong>Source Path:</strong> {{ profile.source_path }}</p>
+            <p><strong>Loaded At:</strong> {{ profile.load_timestamp.strftime('%Y-%m-%d %H:%M:%S') if profile.load_timestamp else 'N/A' }}</p>
+            <p><strong>Dimensions:</strong> {{ profile.raw_data.shape[0] if profile.raw_data is not none else 'N/A' }} rows, {{ profile.raw_data.shape[1] if profile.raw_data is not none else 'N/A' }} columns</p>
+        </div>
+
+        <div class="section">
+            <h2>Quality Scores</h2>
+            {% if profile.quality_score %}
+                <table class="scores-table">
+                    <tr><td>Completeness Score:</td><td>{{ "%.2f"|format(profile.quality_score.completeness_score) }} / 100</td></tr>
+                    <tr><td>Uniqueness Score:</td><td>{{ "%.2f"|format(profile.quality_score.uniqueness_score) }} / 100</td></tr>
+                    <tr><td>Consistency Score:</td><td>{{ "%.2f"|format(profile.quality_score.consistency_score) }} / 100</td></tr>
+                    <tr><td>Validity Score:</td><td>{{ "%.2f"|format(profile.quality_score.validity_score) }} / 100</td></tr>
+                    <tr class="overall-score"><td>Overall Quality Score:</td><td>{{ "%.2f"|format(profile.quality_score.overall_score) }} / 100</td></tr>
+                </table>
+            {% else %}
+                <p>Quality scores not yet calculated.</p>
+            {% endif %}
+        </div>
+
+        <div class="section">
+            <h2>Detected Issues Summary</h2>
+            {% if issues_by_type %}
+                <p><strong>Total Issues Found: {{ profile.issues_found|length }}</strong></p>
+                {% for issue_type, issues_list in issues_by_type.items() %}
+                    <div class="issue-type">
+                        <h3>{{ issue_type }} ({{ issues_list|length }} occurrences)</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Column</th>
+                                    <th>Description</th>
+                                    <th>Severity</th>
+                                    <th>Affected (%)</th>
+                                    <th>Suggestion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for issue in issues_list %}
+                                <tr>
+                                    <td>{{ issue.column_name if issue.column_name else 'N/A (Dataset Level)' }}</td>
+                                    <td>{{ issue.description }}</td>
+                                    <td><span class="severity-{{ issue.severity }}">{{ issue.severity }}</span></td>
+                                    <td>{{ "%.2f"|format(issue.percentage_affected) if issue.percentage_affected is not none else 'N/A'}}</td>
+                                    <td>{{ issue.suggested_action if issue.suggested_action else 'N/A' }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-issues">No data quality issues found (based on current checks).</p>
+            {% endif %}
+        </div>
+
+        <div class="footer">
+            Report generated by Data Guardian © {{ current_year }}
+        </div>
+    </div>
+</body>
+</html>
