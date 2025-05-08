@@ -1,7 +1,7 @@
 # Data Guardian 🛡️
 
-[![PyPI version](https://badge.fury.io/py/data-guardian.svg)](https://badge.fury.io/py/data-guardian)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/data-guardian)](https://pypi.org/project/data-guardian/)
+[![testPyPI version](https://badge.fury.io/py/data-guardian.svg)](https://badge.fury.io/py/data-guardian)
+[![testPyPI - Python Version](https://img.shields.io/pypi/pyversions/data-guardian)](https://pypi.org/project/data-guardian/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Update with your actual license -->
 <!-- Add other badges if you have them (e.g., build status, test coverage) -->
 <!-- [![Build Status](https://travis-ci.org/YOUR_USERNAME/data-guardian.svg?branch=main)](https://travis-ci.org/YOUR_USERNAME/data-guardian) -->
