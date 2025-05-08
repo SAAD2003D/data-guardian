@@ -44,7 +44,7 @@ Whether you're a data scientist, analyst, researcher, or civic tech worker, Data
 You can install Data Guardian using pip. Python 3.8 or higher is required.
 
 ```bash
-pip install data-guardian
+pip install data-guardian==0.1.0
 
 ```
 ## ⚡ Quickstart
